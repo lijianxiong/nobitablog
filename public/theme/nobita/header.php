@@ -17,23 +17,39 @@
 <body>
 <div class="nobita-section">
     <div class="nobita-container">
-        <div class="nobita-sidebar">
-            <div class="n-gravatar">
-                <a href="<?= $_N['site']['site_url']; ?>"><img
-                            src="<?=$_N['session']['face_url']?$_N['session']['face_url']:'/theme/nobita/images/face.jpg'?>"
-                            alt="<?= $_N['site']['title']; ?>">
-                </a>
+        <div class="nobita-mobile">
+            <div class="menu-btn">
+                <i class="czs-menu-l sidebar-open"></i>
             </div>
-            <div class="n-site-link">
-                <ul>
-                    <li><a href="<?= $_N['site']['site_url']; ?>"><i class="czs-home-l"></i> <?= $_N['site']['title'] ?>
-                        </a></li>
-                    <li><a href="/single/phper" title="phper"><i class="czs-web-edit"></i> phper</a></li>
-                    <li><a href="/single/after95" title="after 95"><i class="czs-crown"></i> after 95</a></li>
-                    <li><a href="/single/location" title="location"><i class="czs-location"></i> location</a></li>
-                    <li><a href="/archives" title="archives"><i class="czs-read-l"></i> archives</a></li>
-                    <?= $_N['session']['id'] ? '<li><a href="/user" title="我的中心"><i class="czs-user"></i> My-User</a></li>' : '<li><a href="javascript:;" class="user-login" title="QQ登录账号"><i class="czs-qq"></i> QQ-Login</a></li>' ?>
-                </ul>
+            <div class="mobile-blogname">
+                <p><a href="<?= $_N['site']['site_url']; ?>"><?= $_N['site']['name']; ?></a></p>
+            </div>
+            <div class="mobile-gravatar">
+                <img src="<?= $_N['session']['face_url'] ? $_N['session']['face_url'] : '/theme/nobita/images/face.jpg' ?>"
+                     alt="<?= $_N['site']['title']; ?>">
+            </div>
+        </div>
+        <div class="n-sidebar">
+            <div class="nobita-sidebar">
+                <div class="n-gravatar">
+                    <a href="<?= $_N['site']['site_url']; ?>"><img
+                                src="<?= $_N['session']['face_url'] ? $_N['session']['face_url'] : '/theme/nobita/images/face.jpg' ?>"
+                                alt="<?= $_N['site']['title']; ?>">
+                    </a>
+                </div>
+                <div class="n-site-link">
+                    <ul>
+                        <li><a href="<?= $_N['site']['site_url']; ?>"><i
+                                        class="czs-home-l"></i> <?= $_N['site']['title'] ?>
+                            </a></li>
+                        <li><a href="/single/phper" title="phper"><i class="czs-web-edit"></i> phper</a></li>
+                        <li><a href="/single/after95" title="after 95"><i class="czs-crown"></i> after 95</a></li>
+                        <li><a href="/single/location" title="location"><i class="czs-location"></i> location</a></li>
+                        <li><a href="/archives" title="archives"><i class="czs-read-l"></i> archives</a></li>
+                        <?= $_N['session']['id'] ? '<li><a href="/user" title="我的中心"><i class="czs-user"></i> My-User</a></li>' : '<li><a href="javascript:;" class="user-login" title="QQ登录账号"><i class="czs-qq"></i> QQ-Login</a></li>' ?>
+                    </ul>
+                </div>
+                <div class="czs-close-l close-sidebar"></div>
             </div>
         </div>
         <div class="nobita-menu">

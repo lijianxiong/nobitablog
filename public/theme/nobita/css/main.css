@@ -67,6 +67,14 @@ video {
     top: 110px;
 }
 
+.nobita-mobile{
+    display: none;
+}
+
+.close-sidebar{
+    display: none;
+}
+
 .n-gravatar img {
     width: 100px;
     height: 100px;
@@ -1648,9 +1656,21 @@ img.mfp-img {
         width: 100%;
     }
 
+
+
     .nobita-menu {
-        height: 100%;
+        position: fixed;
+        height: 100vh;
         padding: 0 0 30px 0;
+    }
+
+    .nobita-menu{
+        display: none;
+    }
+
+    .n-nav a {
+        color: #333;
+        font-size: 16px;
     }
 
     .n-search input {
@@ -1808,13 +1828,21 @@ img.mfp-img {
     }
 
     .n-nav ul {
-        display: block;
-        white-space: nowrap;
-        overflow-x: scroll;
-        overflow-y: hidden;
+        text-align: center;
+        margin-top: 4.375rem;
+        padding: 0;
+        display: flex;
+        flex-flow: row wrap;
     }
 
-    .user-post {
+    .n-nav ul li {
+        list-style: none;
+        margin: 0 0 25px 0;
+        display: inline-block;
+        width: 50%;
+    }
+
+    .user-post,.n-dynamic-list {
         padding: 0 15px 0 15px;
     }
 
@@ -1834,7 +1862,67 @@ img.mfp-img {
         height: 160px;
     }
     .n-post-summary img {
-        width: 110%;
-        margin: 0 0 0 -25px;
+        width: 100%;
+        margin: 0 0 0 -3px;
+    }
+    .nobita-sidebar {
+        position: fixed;
+        margin-left: 0px;
+        top: 0;
+        background-color: #fff;
+        z-index: 999;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .n-gravatar,.n-site-link{
+        width: 100%;
+    }
+    .n-gravatar{
+        text-align: center;
+    }
+    .n-site-link {
+        text-align: center;
+    }
+    .n-sidebar{
+        display: none;
+    }
+    .close-sidebar{
+        display: block;
+    }
+    .nobita-mobile{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        padding: 0 15px 0 15px;
+        margin: 0 0 20px 0;
+        border-bottom: 1px solid #eee;
+    }
+    .mobile-gravatar img{
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+    }
+    .menu-btn i{
+        font-size: 25px;
+    }
+    .nobita-menu .show{
+        display: block;
+    }
+    .n-dynamic-item,.n-user-comment-item {
+        padding: 15px 0 15px 0;
+    }
+
+
+    .show{
+        display: block;
+    }
+
+    .hide{
+        display: none;
     }
 }

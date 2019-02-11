@@ -397,3 +397,28 @@ $('.a-mask').click(
         $('.a-mask').toggleClass('show');
     }
 );
+
+$('.sidebar-open').click(
+    function () {
+        $('.nobita-post-list').toggleClass('hide');
+        $('.nobita-menu').toggleClass('show');
+    }
+);
+$('.close-sidebar').click(
+    function () {
+        $('.nobita-post-list').toggleClass('hide');
+        $('.n-sidebar').toggleClass('show');
+    }
+);
+
+$('.mobile-gravatar').click(
+    function () {
+        if ($('.nobita-menu').hasClass('show')){
+            $('.nobita-menu').removeClass('show');
+        }
+        if (!$('.nobita-post-list').hasClass('hide')){
+            $('.nobita-post-list').toggleClass('hide');
+        }
+        $('.n-sidebar').toggleClass('show');
+    }
+);
