@@ -10,7 +10,15 @@
                     <div class="card-body category-edit">
                         <form class="form-inline" method="POST" action="/admin/category/update" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="0">
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-2">
+                                <select name="parent_id">
+                                    <option value="0">请选择父级分类</option>
+                                    <?php foreach ($userCategory as $item): ?>
+                                        <option value="<?=$item['id']?>"><?=str_repeat('-',$item['deep'] * 2).$item['title']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
                                 <label for="title" class="sr-only">分类名称</label>
                                 <input type="text" name="title" id="title" placeholder="我的日记" class="mr-3 form-control col-lg-12">
                             </div>

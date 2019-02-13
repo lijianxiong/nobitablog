@@ -17,9 +17,12 @@ class Category extends Base
         $result = CategoryModel::where('user_id',$this->userId())
             ->where('del',0)
             ->select();
+        $userCategory = $this->userCategory();
+        $userCategoryTree = $this->categoryTree($userCategory);
         $this->assign([
             'title' => '创作分类',
             'nav_cur' => 'category',
+            'userCategory' => $userCategoryTree,
             'category' => $result
         ]);
         return $this->fetch('/category');
@@ -71,6 +74,7 @@ class Category extends Base
         }
         if ($request->file('file') == NULL){
             $data = [
+                'parent_id' => $data['parent_id'],
                 'title' => $data['title'],
                 'slug' => $data['slug'],
                 'user_id' => $this->userId(),

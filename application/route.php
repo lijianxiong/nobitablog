@@ -45,6 +45,7 @@ Route::get('profile/article/[:page]', 'user/article');
 Route::get('profile/comment/[:page]', 'user/comment');
 Route::get('profile/dynamic/[:page]', 'user/dynamic');
 Route::get('profile/edit', 'user/edit');
+Route::get('profile/msg/[:page]', 'user/msg');
 Route::get('profile/write/[:id]', 'user/write');
 
 

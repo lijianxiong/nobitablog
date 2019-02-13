@@ -41,13 +41,13 @@ class Auth extends Base
         return $GetCategoryAll;
     }
 
-    public function categoryTree($data,$parentid=0,$deep=0){
-        static $tree = array();
+    public function categoryTree($data,$parentId=0,$deep=0){
+        $tree = [];
         foreach ($data as $rows){
-            if ($rows['parent_id'] == $parentid){
+            if ($rows['parent_id'] == $parentId){
                 $rows['deep'] = $deep;
                 $tree[] = $rows;
-                self::categoryTree($data,$rows['id'],$deep+1);
+                $tree = array_merge($tree, self::categoryTree($data,$rows['id'],$deep+1));
             }
         }
         return $tree;

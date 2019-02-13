@@ -16,6 +16,7 @@ use app\common\model\Article as ArticleModel;
 use app\common\model\Comment as CommentModel;
 use app\common\model\Visitor as VisitorModel;
 use app\common\model\Additional as AdditionalModel;
+use app\common\model\Msg as MsgModel;
 
 class User extends Auth
 {
@@ -24,7 +25,7 @@ class User extends Auth
         $centerSum = [
             'visitor' => VisitorModel::count(),
             'article_sum' => ArticleModel::where('user_id',$this->userId())->count(),
-            'comment_sum' => AdditionalModel::where('user_id',$this->userId())->sum('comment'),
+            'comment_sum' => CommentModel::where('author_id',$this->userId())->count() + CommentModel::where('user_id',$this->userId())->count(),
             'article_like' => AdditionalModel::where('user_id',$this->userId())->sum('agree')
         ];
         $insertData = [
@@ -43,7 +44,7 @@ class User extends Auth
                 'content' => json_encode($centerSum)
             ]);
         }
-        $this->redirect('/profile/dynamic');
+        $this->redirect('/profile/comment');
         return $this->view->fetch('/user/index');
     }
 
@@ -93,6 +94,24 @@ class User extends Auth
             'activeComment' => 'active'
         ]);
         return $this->view->fetch('/user/comment');
+    }
+
+    public function msg($page = 1){
+        $path = url('/profile/msg/');
+        $msgData = MsgModel::where('user_id',$this->userId())
+            ->order('create_time', 'desc')
+            ->paginate(10, true, [
+                'page' => $page,
+                'path' => $path . '[PAGE]'
+            ]);
+        $page = $msgData->render();
+        $this->assign([
+            'title' => '我的消息',
+            'page' => $page,
+            'msgData' => $msgData,
+            'activeMsg' => 'active'
+        ]);
+        return $this->view->fetch('/user/msg');
     }
 
     public function dynamic($page = 1){
@@ -180,6 +199,8 @@ class User extends Auth
 
         $userCategory = $this->userCategory();
         $userCategoryTree = $this->categoryTree($userCategory);
+
+        //print_r($userCategoryTree);exit;
         $this->assign([
             'title' => $title,
             'nav_cur' => 'write',

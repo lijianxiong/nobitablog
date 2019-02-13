@@ -11,6 +11,7 @@ namespace app\index\controller;
 use app\common\model\Comment as CommentModel;
 use app\common\model\Additional as AdditionalModel;
 use app\common\model\User as UserModel;
+use app\common\model\Msg as MsgModel;
 
 class Comment extends Base
 {
@@ -49,11 +50,21 @@ class Comment extends Base
         }
         $mailTemplate = $this->mailTemplate($commentInertData,$data['type']);
         if ($commentInertData['parent_id'] > 0) {
-            $parentEmail = CommentModel::where('id', $commentInertData['parent_id'])->value('email');
-            if (!empty($parentEmail)) {
-                $this->sendMail($parentEmail, '您在“' . $commentInertData['title'] . '”收到了新的评论', $mailTemplate['replyEmail']);
+            $parentItem = CommentModel::where('id', $commentInertData['parent_id'])->field('id,email,author_id,content,value')->find();
+            if (!empty($parentItem['email'])) {
+                $this->sendMail($parentItem['email'], '您在“' . $commentInertData['title'] . '”收到了新的评论', $mailTemplate['replyEmail']);
             }
             unset($commentInertData['parent_content'], $commentInertData['parent_author'], $commentInertData['title']);
+            if ($this->userId()){
+                $msgInsert = [
+                    'user_id' => $parentItem['author_id'],
+                    'title' => $commentInertData['author'].' 回复了 您的<a href="/post/'.$parentItem['value'].'#n-comment-item-'.$parentItem['id'].'">评论</a>',
+                    'content' => $commentInertData['content'],
+                    'status' => 0,
+                    'create_time' => time(),
+                ];
+                MsgModel::create($msgInsert);
+            }
         } else {
             $sendUser = UserModel::where('id', $commentInertData['user_id'])->value('email');
             if (!empty($sendUser)) {

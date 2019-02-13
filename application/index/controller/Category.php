@@ -24,6 +24,8 @@ class Category extends Base
                 'page' => $page,
                 'path' => $path . '[PAGE]'
             ]);
+        $categoryList = CategoryModel::where('parent_id',$id)
+            ->select();
         $page = $articleList->render();
         $markDown = new Parsedown;
         $listData = [];
@@ -36,8 +38,21 @@ class Category extends Base
         $this->assign([
             'title' => $categoryTitle,
             'page' => $page,
-            'article' => $listData
+            'article' => $listData,
+            'childrenCategory' => $categoryList
         ]);
         return $this->view->fetch('/index');
+    }
+
+    public function categoryTree($data,$parentId=0,$deep=0){
+        $tree = [];
+        foreach ($data as $rows){
+            if ($rows['parent_id'] == $parentId){
+                $rows['deep'] = $deep;
+                $tree[] = $rows;
+                $tree = array_merge($tree, self::categoryTree($data,$rows['id'],$deep+1));
+            }
+        }
+        return $tree;
     }
 }
