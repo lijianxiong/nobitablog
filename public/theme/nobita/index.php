@@ -1,5 +1,23 @@
 <?php include __THEME__.'/header.php'; ?>
 <div class="nobita-post-list">
+    <?php if (empty($article)): ?>
+        <div class="n-archives-header-title">
+            <h4>暂无内容</h4>
+        </div>
+    <?php endif; ?>
+    <?php if ($childrenCategory): ?>
+    <div class="n-children-categroy">
+        <?php foreach ($childrenCategory as $item): ?>
+        <div class="n-children-item">
+            <a href="/category/<?=$item['id'];?>">
+                <?=$item['title'];?>
+            </a>
+        </div>
+
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
     <div class="n-post-list">
 
         <?php foreach ($article as $item): ?>

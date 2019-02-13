@@ -67,11 +67,11 @@ video {
     top: 110px;
 }
 
-.nobita-mobile{
+.nobita-mobile {
     display: none;
 }
 
-.close-sidebar{
+.close-sidebar {
     display: none;
 }
 
@@ -184,6 +184,20 @@ video {
     animation: cont 0.3s;
 }
 
+.n-children-categroy {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.n-children-item {
+    font-size: 14px;
+    background-color: #f5f5f5;
+    margin: 0 0 10px 0;
+    padding: 5px 15px 5px 15px;
+    border-radius: 5px;
+}
+
 .n-post-item a {
     color: #333;
 }
@@ -280,9 +294,39 @@ video {
     margin: 0 0 35px 0;
 }
 
+.n-content li {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.88;
+    margin-bottom: 1rem;
+    word-break: break-word;
+    list-style: none;
+}
+
+.n-content blockquote {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.88;
+    margin-bottom: 1rem;
+    word-break: break-word;
+    border-left: 5px solid #eee;
+    padding: 0 0 0 25px;
+}
+
 .n-content h4 {
-    margin: 20px 0 20px 0;
-    font-size: 21px;
+    margin: 50px 0 20px 0;
+    padding: 0 0 0 25px;
+    font-size: 17px;
+    position: relative;
+}
+
+.n-content h4:before {
+    content: "#";
+    color: #42b983;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2em;
 }
 
 .n-content .t {
@@ -612,6 +656,7 @@ video {
     height: 35px;
     position: absolute;
     z-index: 1;
+    background-color: #f5f5f5;
 }
 
 .n-comment-item-children .n-comment-gravatar {
@@ -1114,26 +1159,30 @@ video {
     border-left: 3px solid #333;
 }
 
-.article-more{
+.article-more {
     display: none;
 }
-.a-header{
+
+.a-header {
     display: flex;
     justify-content: space-between;
     margin: 0 0 20px 0;
     align-items: center;
 }
-.a-title input{
+
+.a-title input {
     background-color: #f5f5f5;
     border: 0;
     border-radius: 3px;
     padding: 10px;
     width: 100%;
 }
-.a-title{
+
+.a-title {
     width: 485px;
 }
-.a-more-btn{
+
+.a-more-btn {
     background-color: #3274ff;
     color: #fff;
     border-radius: 3px;
@@ -1141,22 +1190,25 @@ video {
     cursor: pointer;
     font-size: 15px;
 }
-.a-content-form{
+
+.a-content-form {
     width: 890px;
     margin: 0 0 0 -18%;
 }
-.submit-btn{
+
+.submit-btn {
     background-color: #3274ff;
     color: #fff;
     border-radius: 3px;
     padding: 5px 15px 5px 15px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 17px;
     border: 0;
     width: 100%;
     margin: 20px 0 30px 0;
 }
-.a-mask{
+
+.a-mask {
     display: none;
     position: absolute;
     height: 60vh;
@@ -1165,10 +1217,12 @@ video {
     left: -117px;
     right: 0;
 }
-.show{
+
+.show {
     display: block;
 }
-.article-more{
+
+.article-more {
     position: absolute;
     background: #fff;
     z-index: 99;
@@ -1177,35 +1231,49 @@ video {
     top: 73px;
     width: 200px;
     border: 1px solid #eee;
-    box-shadow: 0 8px 16px 0 rgba(28,31,33,.1);
+    box-shadow: 0 8px 16px 0 rgba(28, 31, 33, .1);
 }
-.n-user-article-edit{
+
+.n-user-article-edit {
     position: relative;
 }
+
 .article-more .form-control-label {
     font-size: .9rem;
     color: #777;
     display: block;
 }
+
+.article-more select {
+    border: 0;
+    background-color: #f5f5f5;
+    padding: 5px;
+}
+
 .article-more label {
     display: inline-block;
     margin-bottom: .5rem;
 }
-.article-more .form-group{
+
+.article-more .form-group {
     margin: 0 0 20px 0;
 }
+
 .article-more .form-group p {
     font-size: 0.9em;
     color: #555;
     margin: 0 0 15px 0;
 }
-.article-more .form-group input{
+
+.article-more .form-group input {
     color: #495057;
     padding: 7px;
 }
-.auto-save{
+
+.auto-save {
     cursor: pointer;
 }
+
 /*user-end*/
 /*灯箱效果*/
 .mfp-arrow:after {
@@ -1656,15 +1724,13 @@ img.mfp-img {
         width: 100%;
     }
 
-
-
     .nobita-menu {
         position: fixed;
         height: 100vh;
         padding: 0 0 30px 0;
     }
 
-    .nobita-menu{
+    .nobita-menu {
         display: none;
     }
 
@@ -1685,6 +1751,7 @@ img.mfp-img {
 
     .n-content-title {
         font-size: 18px;
+        line-height: 25px;
     }
 
     .n-content img {
@@ -1772,6 +1839,7 @@ img.mfp-img {
     .n-post-meta {
         background-color: #fff;
         position: relative;
+        margin: -5px 0 0 0;
         padding: 10px 0 15px 0;
     }
 
@@ -1842,7 +1910,7 @@ img.mfp-img {
         width: 50%;
     }
 
-    .user-post,.n-dynamic-list {
+    .user-post, .n-dynamic-list {
         padding: 0 15px 0 15px;
     }
 
@@ -1858,13 +1926,16 @@ img.mfp-img {
     .n-user-comment-list {
         padding: 0 15px 0 15px;
     }
+
     .n-album-thumb {
         height: 160px;
     }
+
     .n-post-summary img {
         width: 100%;
         margin: 0 0 0 -3px;
     }
+
     .nobita-sidebar {
         position: fixed;
         margin-left: 0px;
@@ -1878,22 +1949,28 @@ img.mfp-img {
         align-items: center;
         flex-wrap: wrap;
     }
-    .n-gravatar,.n-site-link{
+
+    .n-gravatar, .n-site-link {
         width: 100%;
     }
-    .n-gravatar{
+
+    .n-gravatar {
         text-align: center;
     }
+
     .n-site-link {
         text-align: center;
     }
-    .n-sidebar{
+
+    .n-sidebar {
         display: none;
     }
-    .close-sidebar{
+
+    .close-sidebar {
         display: block;
     }
-    .nobita-mobile{
+
+    .nobita-mobile {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1902,27 +1979,35 @@ img.mfp-img {
         margin: 0 0 20px 0;
         border-bottom: 1px solid #eee;
     }
-    .mobile-gravatar img{
+
+    .mobile-gravatar img {
         width: 30px;
         height: 30px;
         border-radius: 15px;
     }
-    .menu-btn i{
+
+    .menu-btn i {
         font-size: 25px;
     }
-    .nobita-menu .show{
+
+    .nobita-menu .show {
         display: block;
     }
-    .n-dynamic-item,.n-user-comment-item {
+
+    .n-dynamic-item, .n-user-comment-item {
         padding: 15px 0 15px 0;
     }
 
+    .n-site-link ul li {
+        font-size: 16px;
+        margin: 0 0 10px 0;
+    }
 
-    .show{
+    .show {
         display: block;
     }
 
-    .hide{
+    .hide {
         display: none;
     }
 }

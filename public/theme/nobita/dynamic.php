@@ -4,7 +4,7 @@
         <div class="n-archives-header-title">
             <h4>动态 <span class="n-sum-archives">共有<?= $sum; ?> 条动态</span></h4>
         </div>
-        <?php if ($_N['session']['id']): ?>
+        <?php if ($_N['session']['group'] == 1): ?>
         <div class="nobita-dynamic-body">
             <div class="nobita-dynamic-form">
                 <div class="dynamic-gravatar">

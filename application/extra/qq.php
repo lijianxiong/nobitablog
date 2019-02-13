@@ -7,8 +7,8 @@
  */
 
 return [
-    'appid' => "101531327",
-    'appkey' => "ef9b28faa1cf616c15ad98fe0ce97c9c",
+    'appid' => "*****",
+    'appkey' => "*****",
     'callback' => "https://199508.com/qqcallback",
     'scope' => "get_user_info",
     'errorReport' => true,

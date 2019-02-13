@@ -9,7 +9,8 @@
 </div>
 <script src="<?= __PUBLIC__ ?>/js/main.js?ver=<?= time(); ?>"></script>
 <script src="<?= __PUBLIC__ ?>/js/lightbox.js?ver=<?= time(); ?>"></script>
-<script src="<?= __PUBLIC__ ?>/js/instantclick.min.js?ver=<?= time(); ?>"></script>
+<script src="<?= __PUBLIC__ ?>/js/fastclick.min.js"></script>
+<script src="<?= __PUBLIC__ ?>/js/instantclick.min.js?ver=<?= time(); ?>" data-no-instant></script>
 <script data-no-instant>InstantClick.init();</script>
 </div>
 </div>
