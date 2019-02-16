@@ -219,6 +219,7 @@ $('.edit-submit').click(
             if (res.status == 1001){
                 $('.n-user-msg').show(300);
                 $('#n-user-msg').text(res.msg);
+                setCookie("username", '' + ',' + '' + ',' + '', 300);
                 setTimeout(function () {
                     $('.n-user-msg').hide(300);
                 }, 3000);

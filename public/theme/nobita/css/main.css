@@ -1274,6 +1274,11 @@ video {
     cursor: pointer;
 }
 
+.n-user-comment-content p{
+    line-height: 21px;
+    font-size: 14px;
+}
+
 /*user-end*/
 /*灯箱效果*/
 .mfp-arrow:after {

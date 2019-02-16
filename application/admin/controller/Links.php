@@ -30,14 +30,12 @@ class Links extends Base
 
     public function trans($data){
         $result = [];
-        for ($i=0;$i<count($data);$i++){
-            $result['id'] = $data['id'];
-            $result['title'] = $data['title'];
-            $result['email'] = $this->getGravatar($data['email']);
-            $result['url'] = $data['url'];
-            $result['description'] = $data['description'];
-            $result['weight'] = $data['weight'];
-        }
+        $result['id'] = $data['id'];
+        $result['title'] = $data['title'];
+        $result['email'] = $this->getGravatar($data['email']);
+        $result['url'] = $data['url'];
+        $result['description'] = $data['description'];
+        $result['weight'] = $data['weight'];
         return $result;
     }
 

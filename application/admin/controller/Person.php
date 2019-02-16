@@ -138,6 +138,17 @@ class Person extends Base
         ];
         $result = UserModel::where('id',$this->userId())->update($insertData);
         if ($result){
+            $user = UserModel::where('id',$this->userId())->field('id,username,nickname,password,email,face_url,group,url')->find();
+            $userArray = [
+                'id' => $user['id'],
+                'username' => $user['username'],
+                'nickname' => $user['nickname'],
+                'email' => $user['email'],
+                'face_url' => $user['face_url'],
+                'group' => $user['group'],
+                'url' => $user['url']
+            ];
+            Session::set('user',$userArray);
             $msg = [
                 'status' => 1001,
                 'msg' => '资料修改成功'

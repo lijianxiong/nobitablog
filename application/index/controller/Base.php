@@ -37,6 +37,7 @@ class Base extends Controller
         }
         $this->_N['site'] = json_decode(SiteModel::where('type', 'site_setting')->value('value'), true);
         $userSession = Session::get('user');
+        //print_r($userSession);exit;
         $this->_N['session'] = $userSession;
         //print_r($this->_N['session']);exit;
         $this->assign([
