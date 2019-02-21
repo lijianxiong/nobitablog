@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title; ?> - <?= $_N['site']['title'] ?></title>
+    <meta name="referrer" content="never">
     <meta name="description" content="<?= $_N['site']['name']; ?>">
     <meta name="keywords" content="大雄,模板,nobita,199508,wordpress">
     <link type="image/vnd.microsoft.icon" href="/favicon.png" rel="shortcut icon">
@@ -32,7 +33,7 @@
         <div class="n-sidebar">
             <div class="nobita-sidebar">
                 <div class="n-gravatar">
-                    <a href="<?= $_N['site']['site_url']; ?>"><img
+                    <a href="javascript:;" onClick="javascript :history.back(-1);" title="<?= $_N['site']['title']; ?>"><img
                                 src="<?= $_N['session']['face_url'] ? $_N['session']['face_url'] : '/theme/nobita/images/face.jpg' ?>"
                                 alt="<?= $_N['site']['title']; ?>">
                     </a>
@@ -43,6 +44,7 @@
                                         class="czs-home-l"></i> <?= $_N['site']['title'] ?>
                             </a></li>
                         <li><a href="/single/phper" title="phper"><i class="czs-web-edit"></i> phper</a></li>
+<!--                        <li><a href="/douban" title="观影记录"><i class="czs-film"></i> movies</a></li>-->
                         <li><a href="/single/after95" title="after 95"><i class="czs-crown"></i> after 95</a></li>
                         <li><a href="/single/location" title="location"><i class="czs-location"></i> location</a></li>
                         <li><a href="/archives" title="archives"><i class="czs-read-l"></i> archives</a></li>

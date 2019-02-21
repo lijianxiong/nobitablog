@@ -35,6 +35,7 @@ Route::get('links', 'page/links');
 Route::post('links/register', 'page/linksRegister');
 Route::get('archives/[:page]', 'page/archives');
 Route::get('album/[:page]', 'page/album');
+Route::get('douBan/[:page]', 'page/douBan');
 Route::get('category/[:id]', 'category/index');
 Route::get('category/[:id]/page/[:page]', 'category/index');
 Route::post('comment/post', 'comment/post');
@@ -47,6 +48,8 @@ Route::get('profile/dynamic/[:page]', 'user/dynamic');
 Route::get('profile/edit', 'user/edit');
 Route::get('profile/msg/[:page]', 'user/msg');
 Route::get('profile/write/[:id]', 'user/write');
+Route::get('profile/douBan/[:page]', 'user/douBan');
+Route::post('profile/getDouBan', 'user/getDouBan');
 
 
 Route::get('dynamic', 'page/dynamic');

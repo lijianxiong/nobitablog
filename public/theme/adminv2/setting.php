@@ -80,12 +80,12 @@
                                     <div class="row">
                                         <div class="radio col-lg-6">
                                             <label>
-                                                <input type="radio" name="ssl" value="ssl" <?=$siteEmail['ssl'] == 'ssl'?'checked':''?>> 使用SSL
+                                                <input type="radio" name="secure" value="ssl" <?=$siteEmail['secure'] == 'ssl'?'checked':''?>> 使用SSL
                                             </label>
                                         </div>
                                         <div class="radio col-lg-6">
                                             <label>
-                                                <input type="radio" name="ssl" value="not" <?=$siteEmail['ssl'] == 'not'?'checked':''?>> 不需要
+                                                <input type="radio" name="secure" value="not" <?=$siteEmail['secure'] == 'not'?'checked':''?>> 不需要
                                             </label>
                                         </div>
                                     </div>
@@ -93,16 +93,23 @@
                             </div>
 
                             <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">发件人名称</label>
+                                <div class="col-sm-9">
+                                    <input id="nickname" type="text" name="nickname" placeholder="" class="form-control form-control-success" value="<?=$siteEmail['nickname'];?>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">发件人邮箱地址</label>
                                 <div class="col-sm-9">
-                                    <input id="post_email" type="text" name="post_email" placeholder="" class="form-control form-control-success" value="<?=$siteEmail['post_email'];?>">
+                                    <input id="post_email" type="text" name="username" placeholder="" class="form-control form-control-success" value="<?=$siteEmail['username'];?>">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">发件人邮箱密码</label>
                                 <div class="col-sm-9">
-                                    <input id="post_password" type="text" name="post_password" placeholder="" class="form-control form-control-success" value="<?=$siteEmail['post_password'];?>">
+                                    <input id="post_password" type="text" name="password" placeholder="" class="form-control form-control-success" value="<?=$siteEmail['password'];?>">
                                 </div>
                             </div>
                             <div class="form-group text-center">

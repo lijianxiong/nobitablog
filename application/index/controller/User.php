@@ -16,6 +16,7 @@ use app\common\model\Article as ArticleModel;
 use app\common\model\Comment as CommentModel;
 use app\common\model\Visitor as VisitorModel;
 use app\common\model\Additional as AdditionalModel;
+use app\common\model\Douban as DoubanModel;
 use app\common\model\Msg as MsgModel;
 
 class User extends Auth
@@ -208,5 +209,72 @@ class User extends Auth
             'data' => $data
         ]);
         return $this->view->fetch('/user/write');
+    }
+
+    public function douBan($page = 1){
+        $path = url('/profile/douban/');
+        $douBanData = DoubanModel::where('user_id',$this->userId())
+            ->order('create_time', 'desc')
+            ->paginate(12, true, [
+                'page' => $page,
+                'path' => $path . '[PAGE]'
+            ]);
+        $movieResult = $this->douBanFormat($douBanData);
+        $page = $douBanData->render();
+        $this->assign([
+            'title' => '豆瓣电影',
+            'data' => $movieResult,
+            'page' => $page
+        ]);
+        return $this->view->fetch('/user/douban');
+    }
+
+    public function douBanFormat($data){
+        $movieList = [];
+        foreach ($data as $key=>$item) {
+            $content = json_decode($item['content'],true);
+            $movieList[$key]['title'] = $content['title'];
+            $movieList[$key]['alt'] = $content['alt'];
+            $movieList[$key]['images'] = $content['images']['large'];
+            $movieList[$key]['rating'] = $content['rating']['average'];
+
+        }
+        return $movieList;
+    }
+
+    public function getDouBan(){
+        $data = input('post.');
+        $id = htmlspecialchars($data['id']);
+        $getUrl = 'https://api.douban.com/v2/movie/subject/'.$id;
+        $result = file_get_contents($getUrl);
+        $haveId = DoubanModel::where('user_id',$this->userId())->where('movie_id',$id)->value('movie_id');
+        if (!empty($haveId)){
+            $msg = [
+                'status' => 1002,
+                'msg' => '电影已经存在添加失败'
+            ];
+            return $msg;
+        }else{
+
+            $result = DoubanModel::create([
+                'user_id' => $this->userId(),
+                'movie_id' => $id,
+                'content' => $result,
+                'create_time' => time()
+            ]);
+            if ($result){
+                $msg = [
+                    'status' => 1001,
+                    'msg' => '电影添加成功'
+                ];
+                return $msg;
+            }else{
+                $msg = [
+                    'status' => 1002,
+                    'msg' => '电影添加失败'
+                ];
+                return $msg;
+            }
+        }
     }
 }

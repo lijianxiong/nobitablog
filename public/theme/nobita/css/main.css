@@ -1,4 +1,5 @@
 body {
+    background-color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, Arial, sans-serif;
 }
 
@@ -255,6 +256,10 @@ video {
     padding: 20px 0px 20px 0px;
 }
 
+.upyun{
+    width: 70px;
+}
+
 .nobita-footer p {
     margin: 0px;
     padding: 0px;
@@ -285,6 +290,14 @@ video {
     font-weight: 700;
     padding: 15px 0 15px 0;
     text-transform: uppercase;
+}
+
+.n-content .alt {
+    color: rgba(0, 0, 0, .3);
+    font-size: 14px;
+    font-weight: 100;
+    text-align: center;
+    margin-top: -20px;
 }
 
 .n-content-meta {
@@ -325,7 +338,7 @@ video {
     color: #42b983;
     position: absolute;
     left: 0;
-    top: 0;
+    top: -3px;
     font-size: 1.2em;
 }
 
@@ -569,6 +582,115 @@ video {
 }
 
 /*comment-star*/
+.comment-trigger{
+    position: absolute;
+    z-index: 10;
+    padding: 0 0 20px 20px;
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.comment-trigger .trigger-title {
+    color: #aaa;
+    font-size: 20px;
+    line-height: 38px;
+}
+.comment-trigger .avatar{
+    width: 36px;
+    height: 36px;
+    border-radius: 36px;
+    overflow: hidden;
+}
+.comment-trigger .avatar img{
+    width: 100%;
+}
+
+.new-comment{
+    position: relative;
+    z-index: 12;
+}
+
+.n-comment-table{
+    padding: 20px 0 0;
+    background-color: #fff;
+    border: 1px solid rgba(150, 150, 150, 0.2);
+}
+
+.new-comment textarea{
+    width: 100%;
+    line-height: 1.8;
+    padding: 0 20px 0 20px;
+    background-color: transparent;
+    resize: none;
+    height: 55px;
+    border: 0;
+}
+
+.new-comment textarea:focus {
+    outline: none;
+}
+
+.ident input:focus {
+    outline: none;
+}
+.comment-triggered{
+    display: none;
+}
+.n-comment-form-inpput{
+    margin: 0 0 50px 0;
+}
+.input-body{
+    display: flex;
+    justify-content: space-between;
+}
+.send-btns{
+    cursor: pointer;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #000;
+    color: #fff;
+    height: 32px;
+    line-height: 32px;
+    margin: 8px 10px 8px 0;
+    border-radius: 20px;
+    text-decoration: none;
+}
+.comment-error{
+    display: none;
+}
+.ident li{
+    display: inline-block;
+    list-style: none;
+    width: 165px;
+}
+.ident input{
+    border: 0;
+    width: 165px;
+    background: #fbfbfb;
+    padding: 0 0 0 25px;
+}
+.input-body{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 18px;
+    margin-top: 12px;
+    position: relative;
+    background-color: #fbfbfb;
+}
+
+.new-comment .comment_error {
+    display: none;
+    text-align: center;
+    color: indianred;
+    font-size: 90%;
+}
+
+
 .n-comment-list {
     margin: 50px 0 0 0;
 }
@@ -698,13 +820,13 @@ video {
 
 .want-comment {
     text-align: center;
-    padding: 30px 0px 30px 0px;
+    padding: 50px 0px 20px 0px;
     margin: 0 0 30px 0;
     font-size: 17px;
     letter-spacing: 3px;
     font-weight: 700;
-    cursor: pointer;
     border-radius: 3px;
+    border-top: 1px solid #eee;
 }
 
 .n-send-form {
@@ -771,7 +893,6 @@ video {
 #comment-submit {
     border: 0;
     font-size: 16px;
-    color: #333;
     font-weight: 300;
 }
 
@@ -800,26 +921,73 @@ video {
     padding: 0 0 0 0;
 }
 
+.n-comment-list-header{
+    margin: 0 0 50px 0;
+    border-bottom: 1px solid #eee;
+    padding: 0 0 20px 5px;
+}
+
 /*comment-end*/
+/*douban-star*/
+.n-douban-list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.n-douban-thumb{
+    width: 210px;
+    height: 315px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center center;
+}
+.n-douban-title{
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.n-douban-thumb{
+    position: relative;
+}
+.n-douban-thumb .rating {
+    background: #f88e00 none repeat scroll 0 0;
+    border-radius: 50px;
+    bottom: 5%;
+    color: #fff;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 5%;
+    text-align: center;
+    width: 30px;
+}
+/*douban-end*/
 /*album-star*/
 .n-album-list {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 15px 0 30px 0;
+    padding: 15px 0 0 0;
 }
 
-.n-album-item {
-    width: 325px;
-}
+/*.n-album-item {*/
+    /*width: 325px;*/
+/*}*/
 
 .n-album-thumb {
+    width: 320px;
     height: 200px;
-    margin: 5px;
+    margin-bottom: 10px;
     border-radius: 3px;
     background-size: cover;
     background-position: center center;
     background-color: #f5f5f5;
+}
+
+.n-album-title{
+    font-size: 14px;
+    margin: 0 0 20px 0;
+    text-align: center;
 }
 
 .n-album-list a {
@@ -1274,9 +1442,85 @@ video {
     cursor: pointer;
 }
 
-.n-user-comment-content p{
+.n-user-comment-content p {
     line-height: 21px;
     font-size: 14px;
+}
+
+.douban-movie-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-button {
+    background-color: #3274ff;
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    transition: all 0.3s;
+    box-shadow: 0 0px 0px 0px #527afe, 0 0px 0px 0px #527afe, 0 5px 35px -5px #527afe;
+}
+
+.movie-id input {
+    border: 0;
+    background-color: #f5f5f5;
+    padding: 5px;
+}
+
+.douban-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 30px 0 0 0;
+}
+
+.douban-movie-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 0 10px 0;
+}
+
+.movie-title {
+    margin: 10px 0 20px 0;
+    font-size: 14px;
+}
+
+.movie-image {
+    position: relative;
+    background-color: #f0f0f0;
+    background-origin: border-box;
+    background-position: 50%;
+    background-size: cover;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    height: 320px;
+    width: 210px;
+    -webkit-animation: b 1s;
+    animation: b 1s;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.douban-movie-item .rating {
+    background: #f88e00 none repeat scroll 0 0;
+    border-radius: 50px;
+    bottom: 5%;
+    color: #fff;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 5%;
+    text-align: center;
+    width: 30px;
 }
 
 /*user-end*/
@@ -1759,6 +2003,10 @@ img.mfp-img {
         line-height: 25px;
     }
 
+    .n-content-title h4 {
+        padding: 5px 0 0 0;
+    }
+
     .n-content img {
         margin: 0 0 0 -25px;
     }
@@ -1856,6 +2104,7 @@ img.mfp-img {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        padding: 9px 0 0 0;
     }
 
     .n-dynamic-gravatar {
@@ -1881,7 +2130,7 @@ img.mfp-img {
 
     .want-comment {
         background-color: #fff;
-        padding: 20px 0px 50px 0px;
+        padding: 20px 0px 20px 0px;
         margin: 0;
     }
 
@@ -1933,6 +2182,7 @@ img.mfp-img {
     }
 
     .n-album-thumb {
+        width: 185px;
         height: 160px;
     }
 
@@ -2014,5 +2264,15 @@ img.mfp-img {
 
     .hide {
         display: none;
+    }
+    .n-douban-thumb {
+        width: 185px;
+        height: 280px;
+    }
+    .ident input {
+        width: 65px;
+    }
+    .ident li {
+        width: 65px;
     }
 }

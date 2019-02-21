@@ -26,7 +26,7 @@
 
                 <li><a href="/profile/comment" class="<?= $activeComment; ?>">评论</a></li>
                 <li><a href="/profile/msg" class="<?= $activeMsg ?>">消息</a></li>
-                <?= $userData['base']['group'] == 1 ? '<li><a href="/profile/dynamic" class="<?= $dynamicActive; ?>">动态</a></li><li><a href="/profile/article" class="<?= $activeArticle; ?>">个人文章</a></li><li><a href="/profile/write" target="_blank">写文章</a></li>' : '' ?>
+                <?= $userData['base']['group'] == 1 ? '<li><a href="/profile/dynamic" class="<?= $dynamicActive; ?>">动态</a></li><li><a href="/profile/article" class="<?= $activeArticle; ?>">个人文章</a></li><li><a href="/profile/write" target="_blank">写文章</a></li><li><a href="/profile/douban">+豆瓣电影</a></li>' : '' ?>
                 <li><a href="/profile/edit" class="<?= $editActive; ?>"><i class="czs-setting-l"> </i> 修改资料</a></li>
                 <li><a href="javascript:;" class="user-login-out"><i class="czs-out-l"> </i> 退出登录</a></li>
             </ul>

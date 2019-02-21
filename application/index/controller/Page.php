@@ -14,6 +14,7 @@ use app\common\model\Link as LinkModel;
 use app\common\model\Article as ArticleModel;
 use app\common\model\Dynamic as DynamicModel;
 use app\common\model\Comment as CommentModel;
+use app\common\model\Douban as DoubanModel;
 
 class Page extends Base
 {
@@ -42,6 +43,39 @@ class Page extends Base
             'sum' => $articleSum
         ]);
         return $this->view->fetch('/album');
+    }
+
+    public function douBan($page = 1){
+        $path = url('/douban/');
+        $douBanData = DoubanModel::where('status', 1)
+            ->order('create_time', 'desc')
+            ->paginate(18, true, [
+                'page' => $page,
+                'path' => $path . '[PAGE]'
+            ]);
+        $articleSum = DoubanModel::count();
+        $page = $douBanData->render();
+        $movieResult = $this->douBanFormat($douBanData);
+        $this->assign([
+            'title' => '看过的电影',
+            'page' => $page,
+            'article' => $movieResult,
+            'sum' => $articleSum
+        ]);
+        return $this->view->fetch('/douban');
+    }
+
+    public function douBanFormat($data){
+        $movieList = [];
+        foreach ($data as $key=>$item) {
+            $content = json_decode($item['content'],true);
+            $movieList[$key]['title'] = $content['title'];
+            $movieList[$key]['alt'] = $content['alt'];
+            $movieList[$key]['images'] = $content['images']['large'];
+            $movieList[$key]['rating'] = $content['rating']['average'];
+
+        }
+        return $movieList;
     }
 
     public function reachAlbum($content, $id, $title)
@@ -149,11 +183,15 @@ class Page extends Base
         ]);
         $articleData['comment'] = $commentData;
         $resultData = $this->dynamicFormConversion($articleData);
+        $commentNum = CommentModel::where('value', $id)
+            ->where('type','d')
+            ->count();
         $this->assign([
             'title' => '动态',
             'article' => $resultData['article'],
             'comment' => $resultData['comment'],
-            'userId' => $this->_N['session']['id']
+            'userId' => $this->_N['session']['id'],
+            'commentNum' => $commentNum
         ]);
         return $this->view->fetch('/dynamic/post');
     }

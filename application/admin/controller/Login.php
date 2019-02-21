@@ -12,6 +12,7 @@ use think\Controller;
 use app\common\model\User as UserModel;
 use app\common\model\Safecode as SafecodeModel;
 use app\common\model\Invitationcode as InviModel;
+use app\common\model\Site as SiteModel;
 
 class Login extends Controller
 {
@@ -149,11 +150,13 @@ class Login extends Controller
     }
 
     public function sendPassword($safeCode,$email){
+        $blogInfo = SiteModel::where('type','site_setting')->value('value');
+        $blogUrl = json_decode($blogInfo,true);
         $this->assign([
             'title' => '发送重置密码链接'
         ]);
         if ($safeCode){
-            $content = '<a href="http://nblog.199508.com/admin/login/setpassword?safe_code='.$safeCode.'&email='.$email.'">点击重置密码</a>';
+            $content = '<a href="'.$blogUrl['site_url'].'/admin/login/setpassword?safe_code='.$safeCode.'&email='.$email.'">点击重置密码</a>';
             $sendEmail = new Mailhelper();
             $sendEmail->sendMail($email,'找回密码，系统邮件请勿直接回复',$content);
             return $this->tips('安全码已经发送至'.$email.'请注意查收!','success',5,'/admin/login');

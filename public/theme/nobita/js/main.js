@@ -44,12 +44,12 @@ function binl2b64(binarray)
 {var triplet=(((binarray[i>>2]>>8*(i%4))&0xFF)<<16)|(((binarray[i+1>>2]>>8*((i+1)%4))&0xFF)<<8)|((binarray[i+2>>2]>>8*((i+2)%4))&0xFF);for(var j=0;j<4;j++)
 {if(i*8+j*6>binarray.length*32)str+=b64pad;else str+=tab.charAt((triplet>>6*(3-j))&0x3F);}}
     return str;}
-$('.want-comment').click(
-    function () {
-        $('.nobita-send-comment').css('display', 'block');
-        $('body').css('overflow', 'hidden')
-    }
-);
+// $('.want-comment').click(
+//     function () {
+//         $('.nobita-send-comment').css('display', 'block');
+//         $('body').css('overflow', 'hidden')
+//     }
+// );
 
 $('.n-close-form').click(
     function () {
@@ -69,15 +69,17 @@ $('.n-edit-from').click(
 );
 $('.n-comment-reply').click(
     function () {
-        $('.nobita-send-comment').css('display', 'block');
-        $('body').css('overflow', 'hidden');
+        // $('.nobita-send-comment').css('display', 'block');
+        // $('body').css('overflow', 'hidden');
+        $('.comment-trigger').css('display','none');
+        $('.comment-triggered').css('display','block');
         let id = $(this).data('id');
         $("#parent_id").val(id);
         let parent_content = $('.n-comment-content-'+id).text();
         $(".n-comment-form-info .parent_content").val(parent_content);
         let parent_author = $('.n-comment-author-'+id).text();
         $(".n-comment-form-info .parent_author").val(parent_author);
-        $('.n-send-header .parent_author').text('@'+parent_author);
+        $('.want-comment').text('@'+parent_author+':'+parent_content);
     }
 );
 $('.n-comment-del').click(
@@ -229,7 +231,38 @@ $('.edit-submit').click(
         })
     }
 );
-$('#comment-submit').click(
+$('.movie-submit').click(
+    function () {
+        let id = $('#movie_id').val();
+        let re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
+        if (!re.test(id)) {
+            $('.n-user-msg').show(300);
+            $('#n-user-msg').text('请输入数字');
+            setTimeout(function () {
+                $('.n-user-msg').hide(300);
+            }, 3000);
+            return false;
+        }
+        $.post('/profile/getdouban',{
+            'id':id
+        },function (res) {
+            if (res.status == 1001){
+                $('.n-user-msg').show(300);
+                $('#n-user-msg').text(res.msg);
+                setTimeout(function () {
+                    $('.n-user-msg').hide(300);
+                }, 3000);
+            }else{
+                $('.n-user-msg').show(300);
+                $('#n-user-msg').text(res.msg);
+                setTimeout(function () {
+                    $('.n-user-msg').hide(300);
+                }, 3000);
+            }
+        })
+    }
+);
+$('.send-btns').click(
     function () {
         let parent_id = $("#parent_id").val();
         let parent_content = $(".n-comment-form-info .parent_content").val();
@@ -246,16 +279,16 @@ $('#comment-submit').click(
         let content = $("#comment-content").val();
         let myDate = timestampToTime(Date.parse(new Date()));
         if (author == '') {
-            $('.n-comment-tips').text('昵称不能为空').show(300);
+            $('.want-comment').text('「昵称不能为空」').show(300);
             setTimeout(function () {
-                $('.n-comment-tips').hide(300);
+                $('.want-comment').text('「人生在世，留句话给我吧」');
             }, 3000);
             return false;
         }
         if (content == '') {
-            $('.n-comment-tips').text('评论内容不能为空').show(300);
+            $('.want-comment').text('「评论内容不能为空」').show(300);
             setTimeout(function () {
-                $('.n-comment-tips').hide(300);
+                $('.want-comment').text('「人生在世，留句话给我吧」');
             }, 3000);
             return false;
         }
@@ -269,7 +302,7 @@ $('#comment-submit').click(
         //     $(".n-comment-list").append(commentContent);
         // }
 
-        $(".n-comment-list").append(commentContent);
+        $("#newcom").append(commentContent);
 
         $('.nobita-send-comment').hide(300);
         $('body').css('overflow', 'inherit');
@@ -288,9 +321,9 @@ $('#comment-submit').click(
             'title': title,
             'content': content,
         }, function (res) {
-            //let data = $.parseJSON(res);
-            console.log(res);
             if (res.status == 1001){
+                $('.comment-trigger').css('display','inline-flex');
+                $('.comment-triggered').css('display','none');
                 $('.want-comment').html('「人生在世，装逼成功」');
             }else{
                 $('.want-comment').html('「人生在世，装逼失败」');
@@ -343,6 +376,12 @@ function visitor(){
             $('.siteview b').html(data);
         });
 }
+$('.new-comment').click(
+    function () {
+        $('.comment-trigger').css('display','none');
+        $('.comment-triggered').css('display','block');
+    }
+);
 $(document).ready(function () {
     visitor();
     let user = getCookie("username");
@@ -354,7 +393,7 @@ $(document).ready(function () {
         $('.n-comment-form-info #author').val(arr[0]);
         $('.n-comment-form-info #email').val(arr[1]);
         $('.n-comment-form-info #url').val(arr[2]);
-        $('.n-comment-form-info').css('display', 'none');
+        //$('.n-comment-form-info').css('display', 'none');
 
     }
     else {

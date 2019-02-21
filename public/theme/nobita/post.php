@@ -16,9 +16,6 @@
                 <?= $article['content']; ?>
             </div>
         </div>
-        <div class="comment-header" id="comment">
-            <p>如果你想转载，请注明来源或者出处</p>
-        </div>
     </div>
 </div>
 <?php

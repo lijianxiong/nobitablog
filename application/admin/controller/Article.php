@@ -137,11 +137,16 @@ class Article extends Base
                         'msg' => '未知原因,自动保存失败'
                     ];
                 }else{
+                    $id = $result->id;
                     $msg = [
                         'status' => 1001,
                         'msg' => '自动保存成功',
-                        'id' => $result->id
+                        'id' => $id
                     ];
+                    AdditionalModel::create([
+                        'user_id' => $this->userId(),
+                        'article_id' => $id
+                    ]);
                 }
                 return $msg;
             }else{

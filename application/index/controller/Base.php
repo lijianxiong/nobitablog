@@ -94,7 +94,8 @@ class Base extends Controller
 
     public function sendMail($to = [], $subject = '', $content = '')
     {
-        $config = config('email');
+        $siteEmail = SiteModel::where('type','site_email')->value('value');
+        $config = json_decode($siteEmail,true);
         $mail = new Message();
         if (empty($config['host']) || empty($config['username']) || empty($config['password'])) {
             return false;

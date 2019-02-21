@@ -15,6 +15,7 @@ class Index extends Base
     {
         $path = url('/index/');
         $articleList = ArticleModel::where('status', 1)
+            ->where('del',NULL)
             ->order('create_time', 'desc')
             ->paginate(10, true, [
                 'page' => $page,
@@ -66,12 +67,16 @@ class Index extends Base
             ->where('type','article')
             ->order('time', 'asc')
             ->select();
+        $commentNum = CommentModel::where('value', $id)
+            ->where('type','article')
+            ->count();
         $articleData['comment'] = $commentData;
         $resultData = $this->articleFormatConversion($articleData);
         $this->assign([
             'title' => $resultData['article']['title'],
             'article' => $resultData['article'],
             'comment' => $resultData['comment'],
+            'commentNum' => $commentNum,
             'userId' => $this->_N['session']['id']
         ]);
         return $this->view->fetch('/post');
